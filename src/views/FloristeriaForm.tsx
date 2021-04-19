@@ -90,11 +90,12 @@ export function FloristeriaForm() {
           />
         </div>
       </div>
-      <p>{msgError}</p>
+
       <br />
       <div className="row">
         {!hasValue ? printFlowers(flowers) : printFlowers(searchedFlowers)}
       </div>
+      <p>{msgError}</p>
     </div>
   );
 }
