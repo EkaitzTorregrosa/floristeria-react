@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 export function FloristeriaForm() {
   const URL: string = "https://dulces-petalos.herokuapp.com/api/product";
@@ -24,7 +24,7 @@ export function FloristeriaForm() {
   function searchFlowers(event: any) {
     let searchingFlowers: any[] = [];
 
-    flowers.map((flower) => {
+    flowers.forEach((flower) => {
       if (
         flowerContains(flower, "name", event) ||
         flowerContains(flower, "binomialName", event)
@@ -35,7 +35,7 @@ export function FloristeriaForm() {
       }
       setSearchedFlowers(searchingFlowers);
     });
-    if (searchingFlowers.length == 0)
+    if (searchingFlowers.length === 0)
       setMsgError("No se han encontrado flores");
   }
 
@@ -61,9 +61,13 @@ export function FloristeriaForm() {
               <h5 className="card-title">{flower["name"]}</h5>
               <p className="card-text">{flower["binomialName"]}</p>
               <p className="card-text font-weight-light">{flower["price"]}€</p>
-              <a href="#" className="btn btn-primary">
+
+              <Link
+                to={{ pathname: "/details", state: { flor: flower } }}
+                className="btn btn-primary"
+              >
                 Detalles
-              </a>
+              </Link>
             </div>
           </div>
         </div>

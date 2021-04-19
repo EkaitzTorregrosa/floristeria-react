@@ -1,18 +1,23 @@
-import { FloristeriaForm } from "./views/FloristeriaForm";
 import "./App.css";
+import { FloristeriaForm } from "./views/FloristeriaForm";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Details } from "./views/Details";
 
 function App() {
   return (
-    <div className="App">
-      <header>
-        <h1>Floristería Dulces Pétalos</h1>
-        <hr />
-      </header>
+    <BrowserRouter>
+      <div className="App">
+        <header>
+          <h1>Floristería Dulces Pétalos</h1>
+          <hr />
 
-      <body>
-        <FloristeriaForm />
-      </body>
-    </div>
+          <Switch>
+            <Route exact path="/" component={FloristeriaForm} />
+            <Route path="/details/" component={Details} />
+          </Switch>
+        </header>
+      </div>
+    </BrowserRouter>
   );
 }
 
